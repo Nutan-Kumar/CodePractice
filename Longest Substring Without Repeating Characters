@@ -1,0 +1,26 @@
+def lengthOfLongestSubstring(self, s):
+        """
+        """
+        # runtime: 95ms
+        dic = {}
+        res, last_match = 0, -1
+        for i, c in enumerate(s):
+            if c in dic and last_match < dic[c]:
+                last_match = dic[c]
+            res = max(res, i - last_match)
+            dic[c] = i
+        return res
+        
+def lengthOfLongestSubstring(self, s):
+    used = {}
+    max_length = start = 0
+    for i, c in enumerate(s):
+        if c in used and start <= used[c]:
+            start = used[c] + 1
+        else:
+            max_length = max(max_length, i - start + 1)
+            
+        used[c] = i
+
+    
+    return max_length
